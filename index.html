@@ -1,0 +1,3050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starlight Investments | Professional Wealth Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A2463;
+            --secondary: #1E88E5;
+            --accent: #FFC107;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --danger: #F44336;
+            --dark: #121212;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --gradient-primary: linear-gradient(135deg, #0A2463 0%, #1E88E5 100%);
+            --gradient-accent: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.15);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.2);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--gradient-primary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .logo h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: #FFB300;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(rgba(10, 36, 99, 0.9), rgba(10, 36, 99, 0.7)), url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.8s ease-out backwards;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0.2s; }
+        .stat-item:nth-child(2) { animation-delay: 0.4s; }
+        .stat-item:nth-child(3) { animation-delay: 0.6s; }
+
+        .stat-item i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Dashboard Layout */
+        .dashboard-container {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: var(--gradient-primary);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .sidebar-menu a i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .main-content {
+            display: grid;
+            gap: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Investment Plans */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+
+        .plan-card.featured {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .plan-card.featured::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.5rem 3rem;
+            transform: rotate(45deg);
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .plan-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .plan-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--light);
+        }
+
+        .plan-features li i {
+            color: var(--success);
+            margin-right: 0.5rem;
+        }
+
+        /* Charts */
+        .chart-container {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            margin: 2rem 0;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Transactions */
+        .transactions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .transactions-table th {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .transactions-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--light);
+        }
+
+        .status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.failed {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            margin: 5% auto;
+            position: relative;
+            animation: fadeIn 0.5s ease-out;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--danger);
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            display: none;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .admin-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .user-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .user-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid var(--light);
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .payment-method {
+            background: white;
+            border: 2px solid var(--light);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .payment-method:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .payment-method.selected {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+        }
+
+        .payment-method i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 2rem;
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-md);
+            color: white;
+            z-index: 3000;
+            animation: fadeIn 0.3s ease-out;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .notification.success {
+            background: var(--success);
+        }
+
+        .notification.error {
+            background: var(--danger);
+        }
+
+        .notification.warning {
+            background: var(--warning);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .plan-card.featured {
+                transform: none;
+            }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--gradient-accent);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: var(--radius-sm);
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.875rem;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0A2463;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-star"></i>
+            <h1>STARLIGHT INVESTMENTS</h1>
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="active"><i class="fas fa-home"></i> Home</a>
+            <a href="#investments"><i class="fas fa-chart-line"></i> Investments</a>
+            <a href="#services"><i class="fas fa-briefcase"></i> Services</a>
+            <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+            <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+            <div class="auth-buttons">
+                <button class="btn btn-secondary" onclick="toggleModal('loginModal')">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button class="btn btn-primary" onclick="toggleModal('registerModal')">
+                    <i class="fas fa-user-plus"></i> Register
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h2>Illuminate Your Financial Future</h2>
+        <p>Professional wealth management and investment solutions tailored to your unique financial journey. 
+           Experience personalized strategies in real estate, cryptocurrency, global markets, and more.</p>
+        <button class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.1rem;" onclick="toggleModal('registerModal')">
+            <i class="fas fa-rocket"></i> Start Your Journey
+        </button>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <h3>10,000+</h3>
+                <p>Active Investors</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-chart-bar"></i>
+                <h3>$250M+</h3>
+                <p>Assets Managed</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-award"></i>
+                <h3>98%</h3>
+                <p>Client Satisfaction</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Dashboard (Hidden by default) -->
+    <div class="dashboard-container" id="dashboard">
+        <div class="dashboard">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="user-profile">
+                    <div class="profile-header">
+                        <div class="avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3 id="userName">Loading...</h3>
+                        <p id="userEmail">Loading...</p>
+                    </div>
+                </div>
+                
+                <ul class="sidebar-menu">
+                    <li><a href="#overview" class="active" onclick="showSection('overview')">
+                        <i class="fas fa-tachometer-alt"></i> Overview
+                    </a></li>
+                    <li><a href="#invest" onclick="showSection('invest')">
+                        <i class="fas fa-coins"></i> Invest Now
+                    </a></li>
+                    <li><a href="#portfolio" onclick="showSection('portfolio')">
+                        <i class="fas fa-chart-pie"></i> Portfolio
+                    </a></li>
+                    <li><a href="#transactions" onclick="showSection('transactions')">
+                        <i class="fas fa-exchange-alt"></i> Transactions
+                    </a></li>
+                    <li><a href="#withdraw" onclick="showSection('withdraw')">
+                        <i class="fas fa-wallet"></i> Withdraw Funds
+                    </a></li>
+                    <li><a href="#deposit" onclick="showSection('deposit')">
+                        <i class="fas fa-credit-card"></i> Deposit
+                    </a></li>
+                    <li><a href="#settings" onclick="showSection('settings')">
+                        <i class="fas fa-cog"></i> Settings
+                    </a></li>
+                    <li><a href="#" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a></li>
+                </ul>
+                
+                <div class="quick-stats">
+                    <div class="stat">
+                        <small>Total Balance</small>
+                        <h4 id="totalBalance">$0.00</h4>
+                    </div>
+                    <div class="stat">
+                        <small>Active Investments</small>
+                        <h4 id="activeInvestments">0</h4>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Overview Section -->
+                <section id="overview" class="dashboard-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Dashboard Overview</h2>
+                            <span class="date" id="currentDate"></span>
+                        </div>
+                        
+                        <div class="balance-display">
+                            <h3>Total Portfolio Value</h3>
+                            <h1 id="portfolioValue">$0.00</h1>
+                            <div class="profit-loss">
+                                <span id="dailyChange">+0.00%</span> Today
+                            </div>
+                        </div>
+                        
+                        <div class="chart-grid">
+                            <div class="chart-container">
+                                <h3>Portfolio Performance</h3>
+                                <canvas id="portfolioChart"></canvas>
+                            </div>
+                            <div class="chart-container">
+                                <h3>Asset Allocation</h3>
+                                <canvas id="allocationChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Invest Section -->
+                <section id="invest" class="dashboard-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Investment Plans</h2>
+                            <p>Choose your investment strategy</p>
+                        </div>
+                        
+                        <div class="plans-grid">
+                            <!-- Plan cards will be dynamically generated -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Portfolio Section -->
+                <section id="portfolio" class="dashboard-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Your Portfolio</h2>
+                            <button class="btn btn-primary" onclick="showSection('invest')">
+                                <i class="fas fa-plus"></i> Add Investment
+                            </button>
+                        </div>
+                        
+                        <div class="portfolio-grid" id="portfolioGrid">
+                            <!-- Portfolio items will be dynamically generated -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Transactions Section -->
+                <section id="transactions" class="dashboard-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Transaction History</h2>
+                            <div class="filters">
+                                <select id="transactionFilter" onchange="filterTransactions()">
+                                    <option value="all">All Transactions</option>
+                                    <option value="deposit">Deposits</option>
+                                    <option value="withdrawal">Withdrawals</option>
+                                    <option value="investment">Investments</option>
+                                    <option value="profit">Profits</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <table class="transactions-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Reference</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactionsBody">
+                                <!-- Transactions will be dynamically generated -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Withdraw Section -->
+                <section id="withdraw" class="dashboard-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Withdraw Funds</h2>
+                        </div>
+                        
+                        <div class="withdraw-form">
+                            <div class="form-group">
+                                <label>Available Balance</label>
+                                <div class="balance-display">
+                                    <h3 id="availableBalance">$0.00</h3>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Withdrawal Amount</label>
+                                <input type="number" id="withdrawAmount" class="form-control" 
+                                       placeholder="Enter amount" min="10" step="0.01">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Payment Method</label>
+                                <div class="payment-methods">
+                                    <div class="payment-method" onclick="selectPaymentMethod('bank')">
+                                        <i class="fas fa-university"></i>
+                                        <h4>Bank Transfer</h4>
+                                    </div>
+                                    <div class="payment-method" onclick="selectPaymentMethod('crypto')">
+                                        <i class="fab fa-bitcoin"></i>
+                                        <h4>Cryptocurrency</h4>
+                                    </div>
+                                    <div class="payment-method" onclick="selectPaymentMethod('paypal')">
+                                        <i class="fab fa-paypal"></i>
+                                        <h4>PayPal</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-primary" onclick="processWithdrawal()">
+                                <i class="fas fa-paper-plane"></i> Request Withdrawal
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Deposit Section -->
+                <section id="deposit" class="dashboard-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Deposit Funds</h2>
+                        </div>
+                        
+                        <div class="deposit-form">
+                            <div class="form-group">
+                                <label>Deposit Amount</label>
+                                <input type="number" id="depositAmount" class="form-control" 
+                                       placeholder="Enter amount" min="10" step="0.01">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Payment Method</label>
+                                <div class="payment-methods">
+                                    <div class="payment-method" onclick="selectDepositMethod('crypto')">
+                                        <i class="fab fa-bitcoin"></i>
+                                        <h4>Cryptocurrency</h4>
+                                        <p>BTC, ETH, USDT</p>
+                                    </div>
+                                    <div class="payment-method" onclick="selectDepositMethod('giftcard')">
+                                        <i class="fas fa-gift"></i>
+                                        <h4>Gift Cards</h4>
+                                        <p>iTunes, Steam, Walmart</p>
+                                    </div>
+                                    <div class="payment-method" onclick="selectDepositMethod('bank')">
+                                        <i class="fas fa-university"></i>
+                                        <h4>Bank Transfer</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="paymentInstructions" style="display: none;">
+                                <!-- Payment instructions will be shown here -->
+                            </div>
+                            
+                            <button class="btn btn-primary" onclick="processDeposit()">
+                                <i class="fas fa-credit-card"></i> Proceed to Payment
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings" class="dashboard-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Account Settings</h2>
+                        </div>
+                        
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="userFullName" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="userEmailInput" class="form-control" disabled>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" id="userPhone" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Change Password</label>
+                                <input type="password" id="newPassword" class="form-control" placeholder="New password">
+                                <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" style="margin-top: 0.5rem;">
+                            </div>
+                            
+                            <button class="btn btn-primary" onclick="updateProfile()">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Admin Panel (Hidden by default) -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="dashboard">
+            <aside class="sidebar">
+                <div class="admin-profile">
+                    <h3><i class="fas fa-user-shield"></i> Admin Panel</h3>
+                    <p>System Administrator</p>
+                </div>
+                
+                <ul class="sidebar-menu">
+                    <li><a href="#adminDashboard" class="active" onclick="showAdminSection('dashboard')">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a></li>
+                    <li><a href="#adminUsers" onclick="showAdminSection('users')">
+                        <i class="fas fa-users"></i> Users
+                    </a></li>
+                    <li><a href="#adminTransactions" onclick="showAdminSection('transactions')">
+                        <i class="fas fa-exchange-alt"></i> Transactions
+                    </a></li>
+                    <li><a href="#adminInvestments" onclick="showAdminSection('investments')">
+                        <i class="fas fa-chart-line"></i> Investments
+                    </a></li>
+                    <li><a href="#adminSettings" onclick="showAdminSection('settings')">
+                        <i class="fas fa-cog"></i> System Settings
+                    </a></li>
+                    <li><a href="#" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a></li>
+                </ul>
+            </aside>
+
+            <main class="main-content">
+                <!-- Admin Dashboard -->
+                <section id="adminDashboard" class="admin-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Admin Dashboard</h2>
+                            <span id="adminDate"></span>
+                        </div>
+                        
+                        <div class="admin-grid">
+                            <div class="admin-card">
+                                <h3><i class="fas fa-users"></i> Total Users</h3>
+                                <h2 id="totalUsers">0</h2>
+                                <p><span id="newUsers">0</span> new today</p>
+                            </div>
+                            <div class="admin-card">
+                                <h3><i class="fas fa-money-bill-wave"></i> Total Deposits</h3>
+                                <h2 id="totalDeposits">$0</h2>
+                                <p><span id="todayDeposits">$0</span> today</p>
+                            </div>
+                            <div class="admin-card">
+                                <h3><i class="fas fa-wallet"></i> Total Withdrawals</h3>
+                                <h2 id="totalWithdrawals">$0</h2>
+                                <p><span id="todayWithdrawals">$0</span> today</p>
+                            </div>
+                            <div class="admin-card">
+                                <h3><i class="fas fa-chart-line"></i> Active Investments</h3>
+                                <h2 id="totalInvestments">0</h2>
+                                <p><span id="activeInvestmentsCount">0</span> active</p>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-container" style="margin-top: 2rem;">
+                            <h3>Platform Growth</h3>
+                            <canvas id="adminChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Users Management -->
+                <section id="adminUsers" class="admin-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">User Management</h2>
+                            <input type="text" id="userSearch" class="form-control" placeholder="Search users..." 
+                                   style="width: 300px;" onkeyup="searchUsers()">
+                        </div>
+                        
+                        <div class="user-list">
+                            <!-- Users will be dynamically loaded -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Transactions Management -->
+                <section id="adminTransactions" class="admin-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Transaction Management</h2>
+                            <div class="filters">
+                                <select id="adminTransactionFilter" onchange="filterAdminTransactions()">
+                                    <option value="all">All Transactions</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="failed">Failed</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <table class="transactions-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminTransactionsBody">
+                                <!-- Admin transactions will be dynamically generated -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Investments Management -->
+                <section id="adminInvestments" class="admin-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Investment Plans Management</h2>
+                            <button class="btn btn-primary" onclick="showAddPlanModal()">
+                                <i class="fas fa-plus"></i> Add New Plan
+                            </button>
+                        </div>
+                        
+                        <div class="plans-grid" id="adminPlansGrid">
+                            <!-- Investment plans for admin management -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- System Settings -->
+                <section id="adminSettings" class="admin-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">System Settings</h2>
+                        </div>
+                        
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label>Platform Name</label>
+                                <input type="text" id="platformName" class="form-control" value="Starlight Investments">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Default Interest Rate (%)</label>
+                                <input type="number" id="defaultInterest" class="form-control" value="5" step="0.1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Minimum Deposit</label>
+                                <input type="number" id="minDeposit" class="form-control" value="50">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Maximum Withdrawal per Day</label>
+                                <input type="number" id="maxWithdrawal" class="form-control" value="5000">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Maintenance Mode</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="maintenanceMode" class="toggle-input">
+                                    <label for="maintenanceMode" class="toggle-label"></label>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-primary" onclick="saveSystemSettings()">
+                                <i class="fas fa-save"></i> Save Settings
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="toggleModal('loginModal')">&times;</button>
+            <h2><i class="fas fa-sign-in-alt"></i> Welcome Back</h2>
+            <p>Sign in to your Starlight Investments account</p>
+            
+            <form id="loginForm" onsubmit="event.preventDefault(); login();">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+                    <div style="text-align: right; margin-top: 0.5rem;">
+                        <a href="#" onclick="toggleModal('forgotPasswordModal')" style="font-size: 0.875rem;">Forgot password?</a>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </button>
+                </div>
+                
+                <div style="text-align: center; margin-top: 1rem;">
+                    <p>Don't have an account? <a href="#" onclick="toggleModal('registerModal')">Register here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="toggleModal('registerModal')">&times;</button>
+            <h2><i class="fas fa-user-plus"></i> Create Account</h2>
+            <p>Join Starlight Investments today</p>
+            
+            <form id="registerForm" onsubmit="event.preventDefault(); register();">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="registerName" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="registerEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="registerPhone" class="form-control" placeholder="Enter your phone number" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="registerPassword" class="form-control" placeholder="Create a password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" class="form-control" placeholder="Confirm your password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="termsAgreement" required>
+                        I agree to the <a href="#" onclick="showTerms()">Terms & Conditions</a> and <a href="#" onclick="showPrivacy()">Privacy Policy</a>
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+                </div>
+                
+                <div style="text-align: center; margin-top: 1rem;">
+                    <p>Already have an account? <a href="#" onclick="toggleModal('loginModal')">Sign in here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="toggleModal('forgotPasswordModal')">&times;</button>
+            <h2><i class="fas fa-key"></i> Reset Password</h2>
+            <p>Enter your email to receive reset instructions</p>
+            
+            <form id="forgotPasswordForm" onsubmit="event.preventDefault(); resetPassword();">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="resetEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i> Send Reset Link
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Investment Plan Details Modal -->
+    <div id="planDetailsModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="toggleModal('planDetailsModal')">&times;</button>
+            <div id="planDetailsContent">
+                <!-- Plan details will be dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Investment Plan Modal (Admin) -->
+    <div id="addPlanModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="toggleModal('addPlanModal')">&times;</button>
+            <h2><i class="fas fa-plus-circle"></i> Add New Investment Plan</h2>
+            
+            <form id="addPlanForm" onsubmit="event.preventDefault(); addNewPlan();">
+                <div class="form-group">
+                    <label>Plan Name</label>
+                    <input type="text" id="planName" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Minimum Investment</label>
+                    <input type="number" id="planMinAmount" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Maximum Investment</label>
+                    <input type="number" id="planMaxAmount" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Duration (Days)</label>
+                    <input type="number" id="planDuration" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Daily Profit (%)</label>
+                    <input type="number" id="planDailyProfit" class="form-control" step="0.1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Total Return (%)</label>
+                    <input type="number" id="planTotalReturn" class="form-control" step="0.1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Plan Description</label>
+                    <textarea id="planDescription" class="form-control" rows="3"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Create Plan
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Instructions Modal -->
+    <div id="paymentInstructionsModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="toggleModal('paymentInstructionsModal')">&times;</button>
+            <div id="paymentInstructionsContent">
+                <!-- Payment instructions will be dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
+    <!-- Main Content Sections -->
+    <section id="services" class="services-section" style="padding: 4rem 2rem; background: white;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 3rem; color: var(--primary);">Our Investment Services</h2>
+            
+            <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div class="service-card" style="background: var(--light); padding: 2rem; border-radius: var(--radius-lg);">
+                    <i class="fas fa-home" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h3>Real Estate</h3>
+                    <p>Premium property investments with guaranteed returns</p>
+                </div>
+                
+                <div class="service-card" style="background: var(--light); padding: 2rem; border-radius: var(--radius-lg);">
+                    <i class="fab fa-bitcoin" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h3>Cryptocurrency</h3>
+                    <p>Digital asset trading and investment strategies</p>
+                </div>
+                
+                <div class="service-card" style="background: var(--light); padding: 2rem; border-radius: var(--radius-lg);">
+                    <i class="fas fa-chart-line" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h3>Global Markets</h3>
+                    <p>International stock and commodity trading</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section" style="padding: 4rem 2rem; background: var(--gradient-primary); color: white;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">About Starlight Investments</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+                We are a premier wealth management firm specializing in personalized investment strategies. 
+                Our team of experts provides comprehensive financial solutions tailored to your unique goals.
+            </p>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <h3>Contact Information</h3>
+                <p><i class="fas fa-envelope"></i> starlightinvestmentsmanagements@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Financial District, New York, NY 10005</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Telegram CTA -->
+    <section style="padding: 3rem 2rem; background: var(--accent); text-align: center;">
+        <h2 style="color: var(--dark); margin-bottom: 1rem;">Stay Connected</h2>
+        <p style="color: var(--dark); margin-bottom: 2rem;">Join our Telegram channel for real-time updates and market insights</p>
+        <a href="https://t.me/StarLightInvestmentsLLC" target="_blank" class="btn btn-primary" style="background: var(--primary); color: white;">
+            <i class="fab fa-telegram"></i> Join Telegram Channel
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Starlight Investments</h3>
+                <p>Professional wealth management and investment solutions for a brighter financial future.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://t.me/StarLightInvestmentsLLC" target="_blank"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#investments">Investments</a>
+                <a href="#services">Services</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <a href="#" onclick="showTerms()">Terms & Conditions</a>
+                <a href="#" onclick="showPrivacy()">Privacy Policy</a>
+                <a href="#" onclick="showDisclaimer()">Risk Disclaimer</a>
+                <a href="#" onclick="showCompliance()">Compliance</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> starlightinvestmentsmanagements@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM EST</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2024 Starlight Investments LLC. All rights reserved.</p>
+            <p style="font-size: 0.875rem; margin-top: 0.5rem;">
+                This platform is for demonstration purposes only. Not financial advice.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Implementation -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script>
+        // Global Variables
+        let currentUser = null;
+        let isAdmin = false;
+        let selectedPaymentMethod = null;
+        let selectedDepositMethod = null;
+        let portfolioChart = null;
+        let allocationChart = null;
+        let adminChart = null;
+
+        // Initialize application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            updateDate();
+            loadInvestmentPlans();
+            checkAuthStatus();
+        });
+
+        // Application Initialization
+        function initializeApp() {
+            // Set current date
+            const dateElement = document.getElementById('currentDate');
+            const adminDateElement = document.getElementById('adminDate');
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = now.toLocaleDateString('en-US', options);
+            
+            if (dateElement) dateElement.textContent = formattedDate;
+            if (adminDateElement) adminDateElement.textContent = formattedDate;
+
+            // Initialize charts
+            initializeCharts();
+            
+            // Load demo data
+            loadDemoData();
+            
+            // Setup event listeners
+            setupEventListeners();
+        }
+
+        // Initialize Charts
+        function initializeCharts() {
+            // Portfolio Performance Chart
+            const portfolioCtx = document.getElementById('portfolioChart')?.getContext('2d');
+            if (portfolioCtx) {
+                portfolioChart = new Chart(portfolioCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Portfolio Value',
+                            data: [10000, 12000, 11500, 13500, 14000, 15500],
+                            borderColor: 'rgba(30, 136, 229, 1)',
+                            backgroundColor: 'rgba(30, 136, 229, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: true
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Asset Allocation Chart
+            const allocationCtx = document.getElementById('allocationChart')?.getContext('2d');
+            if (allocationCtx) {
+                allocationChart = new Chart(allocationCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Real Estate', 'Cryptocurrency', 'Stocks', 'Bonds', 'Commodities'],
+                        datasets: [{
+                            data: [35, 25, 20, 15, 5],
+                            backgroundColor: [
+                                'rgba(10, 36, 99, 0.8)',
+                                'rgba(30, 136, 229, 0.8)',
+                                'rgba(255, 193, 7, 0.8)',
+                                'rgba(76, 175, 80, 0.8)',
+                                'rgba(244, 67, 54, 0.8)'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Admin Chart
+            const adminCtx = document.getElementById('adminChart')?.getContext('2d');
+            if (adminCtx) {
+                adminChart = new Chart(adminCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'New Users',
+                            data: [45, 60, 75, 80, 90, 120],
+                            backgroundColor: 'rgba(30, 136, 229, 0.8)'
+                        }, {
+                            label: 'Total Deposits ($K)',
+                            data: [120, 150, 180, 200, 220, 250],
+                            backgroundColor: 'rgba(76, 175, 80, 0.8)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Load Demo Data
+        function loadDemoData() {
+            // Load investment plans
+            const plans = [
+                {
+                    id: 1,
+                    name: "Starter Plan",
+                    minAmount: 100,
+                    maxAmount: 1000,
+                    duration: 30,
+                    dailyProfit: 1.5,
+                    totalReturn: 45,
+                    description: "Perfect for beginners",
+                    featured: false
+                },
+                {
+                    id: 2,
+                    name: "Premium Plan",
+                    minAmount: 1000,
+                    maxAmount: 10000,
+                    duration: 60,
+                    dailyProfit: 2.0,
+                    totalReturn: 120,
+                    description: "For experienced investors",
+                    featured: true
+                },
+                {
+                    id: 3,
+                    name: "VIP Plan",
+                    minAmount: 10000,
+                    maxAmount: 50000,
+                    duration: 90,
+                    dailyProfit: 2.5,
+                    totalReturn: 225,
+                    description: "Exclusive high-yield plan",
+                    featured: false
+                }
+            ];
+
+            localStorage.setItem('investmentPlans', JSON.stringify(plans));
+            renderInvestmentPlans(plans);
+        }
+
+        // Render Investment Plans
+        function renderInvestmentPlans(plans) {
+            const plansGrid = document.querySelector('.plans-grid');
+            const adminPlansGrid = document.getElementById('adminPlansGrid');
+            
+            if (!plansGrid && !adminPlansGrid) return;
+            
+            const plansHTML = plans.map(plan => `
+                <div class="plan-card ${plan.featured ? 'featured' : ''}">
+                    <div class="plan-icon">
+                        <i class="fas ${plan.featured ? 'fa-crown' : 'fa-gem'}"></i>
+                    </div>
+                    <h3>${plan.name}</h3>
+                    <div class="plan-price">$${plan.minAmount} - $${plan.maxAmount}</div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> ${plan.dailyProfit}% Daily Profit</li>
+                        <li><i class="fas fa-check"></i> ${plan.duration} Days Duration</li>
+                        <li><i class="fas fa-check"></i> ${plan.totalReturn}% Total Return</li>
+                        <li><i class="fas fa-check"></i> 24/7 Support</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="viewPlanDetails(${plan.id})">
+                        <i class="fas fa-info-circle"></i> View Details
+                    </button>
+                    <button class="btn btn-secondary" onclick="investInPlan(${plan.id})" style="margin-top: 0.5rem;">
+                        <i class="fas fa-coins"></i> Invest Now
+                    </button>
+                </div>
+            `).join('');
+            
+            if (plansGrid) plansGrid.innerHTML = plansHTML;
+            if (adminPlansGrid) adminPlansGrid.innerHTML = plansHTML;
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Close modals when clicking outside
+            document.addEventListener('click', function(event) {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+
+            // Escape key to close modals
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    const modals = document.querySelectorAll('.modal');
+                    modals.forEach(modal => {
+                        modal.style.display = 'none';
+                    });
+                }
+            });
+        }
+
+        // Authentication Functions
+        function checkAuthStatus() {
+            const userData = localStorage.getItem('currentUser');
+            if (userData) {
+                currentUser = JSON.parse(userData);
+                isAdmin = currentUser.email === 'admin@starlight.com';
+                
+                if (isAdmin) {
+                    showAdminPanel();
+                } else {
+                    showUserDashboard();
+                }
+            }
+        }
+
+        function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Demo admin credentials
+            if (email === 'admin@starlight.com' && password === 'JayJay22') {
+                currentUser = {
+                    email: email,
+                    name: 'Administrator',
+                    role: 'admin'
+                };
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                isAdmin = true;
+                showNotification('Login successful!', 'success');
+                toggleModal('loginModal');
+                showAdminPanel();
+                return;
+            }
+            
+            // Check regular users
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                isAdmin = false;
+                showNotification('Login successful!', 'success');
+                toggleModal('loginModal');
+                showUserDashboard();
+            } else {
+                showNotification('Invalid email or password', 'error');
+            }
+        }
+
+        function register() {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('registerPhone').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match', 'error');
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            
+            if (users.some(u => u.email === email)) {
+                showNotification('Email already registered', 'error');
+                return;
+            }
+            
+            const newUser = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                phone: phone,
+                password: password,
+                balance: 0,
+                investments: [],
+                transactions: [],
+                createdAt: new Date().toISOString()
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            showNotification('Registration successful! Please login.', 'success');
+            toggleModal('registerModal');
+            toggleModal('loginModal');
+        }
+
+        function logout() {
+            currentUser = null;
+            isAdmin = false;
+            localStorage.removeItem('currentUser');
+            
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'none';
+            
+            showNotification('Logged out successfully', 'success');
+        }
+
+        // Dashboard Functions
+        function showUserDashboard() {
+            document.getElementById('dashboard').style.display = 'block';
+            document.getElementById('adminPanel').style.display = 'none';
+            updateUserDashboard();
+        }
+
+        function showAdminPanel() {
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            updateAdminDashboard();
+        }
+
+        function updateUserDashboard() {
+            if (!currentUser) return;
+            
+            // Update user info
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('userEmail').textContent = currentUser.email;
+            document.getElementById('userFullName').value = currentUser.name;
+            document.getElementById('userEmailInput').value = currentUser.email;
+            document.getElementById('userPhone').value = currentUser.phone || '';
+            
+            // Calculate total balance
+            const totalBalance = currentUser.balance || 0;
+            const activeInvestments = currentUser.investments?.length || 0;
+            
+            document.getElementById('totalBalance').textContent = `$${totalBalance.toFixed(2)}`;
+            document.getElementById('portfolioValue').textContent = `$${totalBalance.toFixed(2)}`;
+            document.getElementById('availableBalance').textContent = `$${totalBalance.toFixed(2)}`;
+            document.getElementById('activeInvestments').textContent = activeInvestments;
+            
+            // Update transactions
+            updateTransactionsTable();
+            
+            // Update portfolio
+            updatePortfolioGrid();
+        }
+
+        function updateAdminDashboard() {
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const transactions = getAllTransactions();
+            
+            // Calculate stats
+            const totalUsers = users.length;
+            const newUsers = users.filter(u => {
+                const createdDate = new Date(u.createdAt);
+                const today = new Date();
+                return createdDate.toDateString() === today.toDateString();
+            }).length;
+            
+            const totalDeposits = transactions
+                .filter(t => t.type === 'deposit' && t.status === 'completed')
+                .reduce((sum, t) => sum + t.amount, 0);
+            
+            const todayDeposits = transactions
+                .filter(t => t.type === 'deposit' && t.status === 'completed' && 
+                       new Date(t.date).toDateString() === new Date().toDateString())
+                .reduce((sum, t) => sum + t.amount, 0);
+            
+            // Update admin dashboard
+            document.getElementById('totalUsers').textContent = totalUsers;
+            document.getElementById('newUsers').textContent = newUsers;
+            document.getElementById('totalDeposits').textContent = `$${totalDeposits.toFixed(2)}`;
+            document.getElementById('todayDeposits').textContent = `$${todayDeposits.toFixed(2)}`;
+            
+            // Update user list
+            updateUserList();
+            
+            // Update admin transactions
+            updateAdminTransactions();
+        }
+
+        // Investment Functions
+        function viewPlanDetails(planId) {
+            const plans = JSON.parse(localStorage.getItem('investmentPlans') || '[]');
+            const plan = plans.find(p => p.id === planId);
+            
+            if (!plan) return;
+            
+            const content = `
+                <h2>${plan.name}</h2>
+                <div class="plan-details">
+                    <p><strong>Investment Range:</strong> $${plan.minAmount} - $${plan.maxAmount}</p>
+                    <p><strong>Duration:</strong> ${plan.duration} days</p>
+                    <p><strong>Daily Profit:</strong> ${plan.dailyProfit}%</p>
+                    <p><strong>Total Return:</strong> ${plan.totalReturn}%</p>
+                    <p><strong>Description:</strong> ${plan.description}</p>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <button class="btn btn-primary" onclick="investInPlan(${plan.id})" style="width: 100%;">
+                        <i class="fas fa-coins"></i> Invest Now
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('planDetailsContent').innerHTML = content;
+            toggleModal('planDetailsModal');
+        }
+
+        function investInPlan(planId) {
+            if (!currentUser) {
+                showNotification('Please login to invest', 'warning');
+                toggleModal('loginModal');
+                return;
+            }
+            
+            const plans = JSON.parse(localStorage.getItem('investmentPlans') || '[]');
+            const plan = plans.find(p => p.id === planId);
+            
+            if (!plan) return;
+            
+            const amount = prompt(`Enter investment amount ($${plan.minAmount} - $${plan.maxAmount}):`);
+            if (!amount || isNaN(amount) || amount < plan.minAmount || amount > plan.maxAmount) {
+                showNotification('Invalid investment amount', 'error');
+                return;
+            }
+            
+            if (currentUser.balance < amount) {
+                showNotification('Insufficient balance', 'error');
+                return;
+            }
+            
+            // Create investment
+            const investment = {
+                id: Date.now(),
+                planId: planId,
+                planName: plan.name,
+                amount: parseFloat(amount),
+                startDate: new Date().toISOString(),
+                endDate: new Date(Date.now() + plan.duration * 24 * 60 * 60 * 1000).toISOString(),
+                dailyProfit: plan.dailyProfit,
+                totalReturn: plan.totalReturn,
+                status: 'active',
+                profits: []
+            };
+            
+            // Update user balance
+            currentUser.balance -= parseFloat(amount);
+            currentUser.investments = currentUser.investments || [];
+            currentUser.investments.push(investment);
+            
+            // Add transaction
+            addTransaction({
+                type: 'investment',
+                amount: -parseFloat(amount),
+                description: `Investment in ${plan.name}`,
+                status: 'completed'
+            });
+            
+            // Update localStorage
+            updateUserData();
+            
+            showNotification(`Successfully invested $${amount} in ${plan.name}`, 'success');
+            updateUserDashboard();
+            toggleModal('planDetailsModal');
+        }
+
+        // Transaction Functions
+        function addTransaction(transaction) {
+            if (!currentUser) return;
+            
+            const newTransaction = {
+                id: Date.now(),
+                date: new Date().toISOString(),
+                type: transaction.type,
+                amount: transaction.amount,
+                description: transaction.description,
+                status: transaction.status || 'pending',
+                reference: 'TX' + Date.now().toString().slice(-8)
+            };
+            
+            currentUser.transactions = currentUser.transactions || [];
+            currentUser.transactions.unshift(newTransaction);
+            
+            updateUserData();
+            return newTransaction;
+        }
+
+        function updateTransactionsTable() {
+            if (!currentUser || !currentUser.transactions) return;
+            
+            const tbody = document.getElementById('transactionsBody');
+            if (!tbody) return;
+            
+            const transactions = currentUser.transactions.slice(0, 10); // Show last 10
+            const html = transactions.map(t => `
+                <tr>
+                    <td>${formatDate(t.date)}</td>
+                    <td>${t.type.charAt(0).toUpperCase() + t.type.slice(1)}</td>
+                    <td>${t.amount >= 0 ? '+' : ''}$${Math.abs(t.amount).toFixed(2)}</td>
+                    <td><span class="status ${t.status}">${t.status}</span></td>
+                    <td>${t.reference}</td>
+                </tr>
+            `).join('');
+            
+            tbody.innerHTML = html;
+        }
+
+        function getAllTransactions() {
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            let allTransactions = [];
+            
+            users.forEach(user => {
+                if (user.transactions) {
+                    user.transactions.forEach(t => {
+                        allTransactions.push({
+                            ...t,
+                            userName: user.name,
+                            userEmail: user.email
+                        });
+                    });
+                }
+            });
+            
+            return allTransactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+        }
+
+        function updateAdminTransactions() {
+            const transactions = getAllTransactions().slice(0, 20); // Show last 20
+            const tbody = document.getElementById('adminTransactionsBody');
+            
+            if (!tbody) return;
+            
+            const html = transactions.map(t => `
+                <tr>
+                    <td>${t.userName} (${t.userEmail})</td>
+                    <td>${t.type}</td>
+                    <td>$${Math.abs(t.amount).toFixed(2)}</td>
+                    <td><span class="status ${t.status}">${t.status}</span></td>
+                    <td>${formatDate(t.date)}</td>
+                    <td>
+                        ${t.status === 'pending' ? `
+                            <button class="btn btn-primary btn-sm" onclick="updateTransactionStatus(${t.id}, 'completed')">
+                                <i class="fas fa-check"></i> Approve
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="updateTransactionStatus(${t.id}, 'failed')">
+                                <i class="fas fa-times"></i> Reject
+                            </button>
+                        ` : ''}
+                    </td>
+                </tr>
+            `).join('');
+            
+            tbody.innerHTML = html;
+        }
+
+        // Payment Methods
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+            
+            // Remove selected class from all
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked
+            event.target.closest('.payment-method').classList.add('selected');
+        }
+
+        function selectDepositMethod(method) {
+            selectedDepositMethod = method;
+            
+            // Remove selected class from all
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked
+            event.target.closest('.payment-method').classList.add('selected');
+            
+            // Show payment instructions
+            showPaymentInstructions(method);
+        }
+
+        function showPaymentInstructions(method) {
+            const instructionsDiv = document.getElementById('paymentInstructions');
+            
+            let instructions = '';
+            switch(method) {
+                case 'crypto':
+                    instructions = `
+                        <div class="payment-instructions">
+                            <h4><i class="fab fa-bitcoin"></i> Cryptocurrency Payment</h4>
+                            <p>Send your payment to one of the following addresses:</p>
+                            <div class="crypto-addresses">
+                                <p><strong>Bitcoin (BTC):</strong> <code>1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</code></p>
+                                <p><strong>Ethereum (ETH):</strong> <code>0x742d35Cc6634C0532925a3b844Bc9e0F0C5FfA25</code></p>
+                                <p><strong>USDT (ERC20):</strong> <code>0x742d35Cc6634C0532925a3b844Bc9e0F0C5FfA25</code></p>
+                            </div>
+                            <p><strong>Important:</strong> After payment, upload your transaction screenshot in the dashboard.</p>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'giftcard':
+                    instructions = `
+                        <div class="payment-instructions">
+                            <h4><i class="fas fa-gift"></i> Gift Card Payment</h4>
+                            <p>We accept the following gift cards:</p>
+                            <ul>
+                                <li>iTunes/Apple Card</li>
+                                <li>Steam Wallet Card</li>
+                                <li>Razor Gold</li>
+                                <li>Walmart Money Card</li>
+                                <li>Amazon Gift Card</li>
+                                <li>Google Play Card</li>
+                            </ul>
+                            <p><strong>Instructions:</strong></p>
+                            <ol>
+                                <li>Purchase a gift card from any authorized retailer</li>
+                                <li>Take clear photos of both front and back of the card</li>
+                                <li>Upload the photos with the receipt showing amount</li>
+                                <li>Our team will verify and credit your account within 24 hours</li>
+                            </ol>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'bank':
+                    instructions = `
+                        <div class="payment-instructions">
+                            <h4><i class="fas fa-university"></i> Bank Transfer</h4>
+                            <p>For bank transfers, please contact our support team at:</p>
+                            <p><strong>Email:</strong> starlightinvestmentsmanagements@gmail.com</p>
+                            <p><strong>Telegram:</strong> <a href="https://t.me/StarLightInvestmentsLLC" target="_blank">@StarLightInvestmentsLLC</a></p>
+                            <p>Our team will provide you with the banking details and assist you through the process.</p>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            instructionsDiv.innerHTML = instructions;
+            instructionsDiv.style.display = 'block';
+        }
+
+        // Deposit Function
+        function processDeposit() {
+            const amount = document.getElementById('depositAmount').value;
+            
+            if (!amount || amount < 10) {
+                showNotification('Minimum deposit is $10', 'error');
+                return;
+            }
+            
+            if (!selectedDepositMethod) {
+                showNotification('Please select a payment method', 'error');
+                return;
+            }
+            
+            // Create deposit transaction
+            const transaction = addTransaction({
+                type: 'deposit',
+                amount: parseFloat(amount),
+                description: `Deposit via ${selectedDepositMethod}`,
+                status: 'pending'
+            });
+            
+            // Show payment instructions modal
+            const instructions = `
+                <h2><i class="fas fa-credit-card"></i> Complete Your Deposit</h2>
+                <div class="deposit-instructions">
+                    <p><strong>Amount:</strong> $${amount}</p>
+                    <p><strong>Method:</strong> ${selectedDepositMethod}</p>
+                    <p><strong>Reference:</strong> ${transaction.reference}</p>
+                    
+                    ${selectedDepositMethod === 'crypto' ? `
+                        <div class="crypto-qr" style="text-align: center; margin: 2rem 0;">
+                            <p>Scan QR code or use address below:</p>
+                            <div style="background: #f0f0f0; padding: 1rem; border-radius: 8px; display: inline-block;">
+                                <!-- QR Code placeholder -->
+                                <div style="width: 200px; height: 200px; background: #333; margin: 0 auto;"></div>
+                            </div>
+                            <p><strong>BTC Address:</strong> <code>1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</code></p>
+                            <p><small>Send exact amount: $${amount} worth of BTC</small></p>
+                        </div>
+                    ` : ''}
+                    
+                    ${selectedDepositMethod === 'giftcard' ? `
+                        <div class="giftcard-instructions">
+                            <h4>Gift Card Upload Instructions:</h4>
+                            <ol>
+                                <li>Take clear photos of the gift card (front and back)</li>
+                                <li>Take photo of receipt showing amount</li>
+                                <li>Email all photos to: starlightinvestmentsmanagements@gmail.com</li>
+                                <li>Include your reference number: ${transaction.reference}</li>
+                            </ol>
+                            <p><strong>Note:</strong> Processing takes 1-24 hours after verification</p>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="upload-section" style="margin-top: 2rem;">
+                        <h4>Upload Payment Proof</h4>
+                        <input type="file" id="paymentProof" accept="image/*" style="margin: 1rem 0;">
+                        <button class="btn btn-primary" onclick="uploadPaymentProof(${transaction.id})">
+                            <i class="fas fa-upload"></i> Upload Proof
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('paymentInstructionsContent').innerHTML = instructions;
+            toggleModal('paymentInstructionsModal');
+            
+            showNotification('Deposit request created. Please complete payment.', 'success');
+        }
+
+        // Withdrawal Function
+        function processWithdrawal() {
+            const amount = document.getElementById('withdrawAmount').value;
+            
+            if (!amount || amount < 10) {
+                showNotification('Minimum withdrawal is $10', 'error');
+                return;
+            }
+            
+            if (!selectedPaymentMethod) {
+                showNotification('Please select a payment method', 'error');
+                return;
+            }
+            
+            if (currentUser.balance < amount) {
+                showNotification('Insufficient balance', 'error');
+                return;
+            }
+            
+            // Create withdrawal transaction
+            addTransaction({
+                type: 'withdrawal',
+                amount: -parseFloat(amount),
+                description: `Withdrawal via ${selectedPaymentMethod}`,
+                status: 'pending'
+            });
+            
+            // Update balance (pending)
+            currentUser.balance -= parseFloat(amount);
+            updateUserData();
+            
+            showNotification('Withdrawal request submitted. Processing takes 24-48 hours.', 'success');
+            updateUserDashboard();
+        }
+
+        // Portfolio Functions
+        function updatePortfolioGrid() {
+            if (!currentUser || !currentUser.investments) return;
+            
+            const grid = document.getElementById('portfolioGrid');
+            if (!grid) return;
+            
+            const investments = currentUser.investments;
+            
+            if (investments.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-portfolio">
+                        <i class="fas fa-chart-line" style="font-size: 4rem; color: #ccc; margin-bottom: 1rem;"></i>
+                        <h3>No Active Investments</h3>
+                        <p>Start your investment journey today!</p>
+                        <button class="btn btn-primary" onclick="showSection('invest')">
+                            <i class="fas fa-coins"></i> Browse Plans
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            const html = investments.map(inv => {
+                const startDate = new Date(inv.startDate);
+                const endDate = new Date(inv.endDate);
+                const now = new Date();
+                const progress = Math.min(100, ((now - startDate) / (endDate - startDate)) * 100);
+                const earned = (inv.amount * inv.dailyProfit / 100) * Math.floor((now - startDate) / (24 * 60 * 60 * 1000));
+                
+                return `
+                    <div class="portfolio-item">
+                        <div class="portfolio-header">
+                            <h4>${inv.planName}</h4>
+                            <span class="status ${inv.status}">${inv.status}</span>
+                        </div>
+                        <div class="portfolio-details">
+                            <p><strong>Amount:</strong> $${inv.amount.toFixed(2)}</p>
+                            <p><strong>Daily Profit:</strong> ${inv.dailyProfit}%</p>
+                            <p><strong>Earned:</strong> $${earned.toFixed(2)}</p>
+                            <p><strong>End Date:</strong> ${formatDate(inv.endDate)}</p>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: ${progress}%"></div>
+                        </div>
+                        <div class="portfolio-actions">
+                            <button class="btn btn-primary btn-sm" onclick="viewInvestmentDetails(${inv.id})">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            ${inv.status === 'active' ? `
+                                <button class="btn btn-danger btn-sm" onclick="cancelInvestment(${inv.id})">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            grid.innerHTML = html;
+        }
+
+        // Admin Functions
+        function updateUserList() {
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const userList = document.querySelector('.user-list');
+            
+            if (!userList) return;
+            
+            const html = users.map(user => `
+                <div class="user-item">
+                    <div class="user-info">
+                        <h4>${user.name}</h4>
+                        <p>${user.email}</p>
+                        <small>Joined: ${formatDate(user.createdAt)}</small>
+                    </div>
+                    <div class="user-stats">
+                        <p>Balance: $${user.balance?.toFixed(2) || '0.00'}</p>
+                        <p>Investments: ${user.investments?.length || 0}</p>
+                    </div>
+                    <div class="user-actions">
+                        <button class="btn btn-primary btn-sm" onclick="viewUserDetails(${user.id})">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-secondary btn-sm" onclick="editUser(${user.id})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteUser(${user.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            userList.innerHTML = html;
+        }
+
+        function updateTransactionStatus(transactionId, status) {
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            let updated = false;
+            
+            users.forEach(user => {
+                if (user.transactions) {
+                    const transaction = user.transactions.find(t => t.id === transactionId);
+                    if (transaction) {
+                        transaction.status = status;
+                        updated = true;
+                        
+                        // If deposit is approved, update user balance
+                        if (status === 'completed' && transaction.type === 'deposit') {
+                            user.balance = (user.balance || 0) + transaction.amount;
+                        }
+                        
+                        // If withdrawal is approved, it was already deducted
+                        if (status === 'completed' && transaction.type === 'withdrawal') {
+                            // Balance already updated when request was made
+                        }
+                    }
+                }
+            });
+            
+            if (updated) {
+                localStorage.setItem('users', JSON.stringify(users));
+                updateAdminDashboard();
+                showNotification('Transaction status updated', 'success');
+            }
+        }
+
+        // Utility Functions
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+            }
+        }
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.dashboard-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Remove active class from all sidebar links
+            document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show selected section
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.style.display = 'block';
+            }
+            
+            // Add active class to clicked link
+            const link = document.querySelector(`.sidebar-menu a[href="#${sectionId}"]`);
+            if (link) {
+                link.classList.add('active');
+            }
+        }
+
+        function showAdminSection(sectionId) {
+            // Hide all admin sections
+            document.querySelectorAll('.admin-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Remove active class from all admin sidebar links
+            document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show selected section
+            const section = document.getElementById('admin' + sectionId.charAt(0).toUpperCase() + sectionId.slice(1));
+            if (section) {
+                section.style.display = 'block';
+            }
+            
+            // Add active class to clicked link
+            const link = document.querySelector(`.sidebar-menu a[href="#admin${sectionId.charAt(0).toUpperCase() + sectionId.slice(1)}"]`);
+            if (link) {
+                link.classList.add('active');
+            }
+        }
+
+        function showNotification(message, type = 'info') {
+            const container = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            container.appendChild(notification);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function updateDate() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            const formatted = now.toLocaleDateString('en-US', options);
+            
+            // Update all date elements
+            document.querySelectorAll('.date').forEach(el => {
+                el.textContent = formatted;
+            });
+        }
+
+        function updateUserData() {
+            if (!currentUser) return;
+            
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const index = users.findIndex(u => u.email === currentUser.email);
+            
+            if (index !== -1) {
+                users[index] = currentUser;
+                localStorage.setItem('users', JSON.stringify(users));
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            }
+        }
+
+        function loadInvestmentPlans() {
+            const plans = JSON.parse(localStorage.getItem('investmentPlans') || '[]');
+            if (plans.length === 0) {
+                loadDemoData();
+            } else {
+                renderInvestmentPlans(plans);
+            }
+        }
+
+        function showAddPlanModal() {
+            toggleModal('addPlanModal');
+        }
+
+        function addNewPlan() {
+            const plan = {
+                id: Date.now(),
+                name: document.getElementById('planName').value,
+                minAmount: parseFloat(document.getElementById('planMinAmount').value),
+                maxAmount: parseFloat(document.getElementById('planMaxAmount').value),
+                duration: parseInt(document.getElementById('planDuration').value),
+                dailyProfit: parseFloat(document.getElementById('planDailyProfit').value),
+                totalReturn: parseFloat(document.getElementById('planTotalReturn').value),
+                description: document.getElementById('planDescription').value,
+                featured: false
+            };
+            
+            const plans = JSON.parse(localStorage.getItem('investmentPlans') || '[]');
+            plans.push(plan);
+            localStorage.setItem('investmentPlans', JSON.stringify(plans));
+            
+            renderInvestmentPlans(plans);
+            toggleModal('addPlanModal');
+            showNotification('Investment plan added successfully', 'success');
+        }
+
+        function uploadPaymentProof(transactionId) {
+            const fileInput = document.getElementById('paymentProof');
+            if (!fileInput.files.length) {
+                showNotification('Please select a file', 'error');
+                return;
+            }
+            
+            // In a real application, you would upload to a server
+            // For demo, we'll just show success message
+            showNotification('Payment proof uploaded successfully. Our team will verify it shortly.', 'success');
+            toggleModal('paymentInstructionsModal');
+        }
+
+        // Legal Documents
+        function showTerms() {
+            const content = `
+                <h2>Terms & Conditions</h2>
+                <div style="max-height: 400px; overflow-y: auto; padding: 1rem; background: #f5f5f5; border-radius: 8px;">
+                    <h3>1. Agreement to Terms</h3>
+                    <p>By accessing Starlight Investments, you agree to be bound by these Terms...</p>
+                    
+                    <h3>2. Investment Services</h3>
+                    <p>We provide investment management services including but not limited to...</p>
+                    
+                    <h3>3. Risk Disclosure</h3>
+                    <p>All investments carry risk. Past performance is not indicative of future results...</p>
+                    
+                    <h3>4. User Responsibilities</h3>
+                    <p>Users are responsible for maintaining account security and accurate information...</p>
+                    
+                    <h3>5. Termination</h3>
+                    <p>We reserve the right to terminate accounts for violation of terms...</p>
+                    
+                    <h3>6. Limitation of Liability</h3>
+                    <p>Starlight Investments shall not be liable for indirect, incidental damages...</p>
+                    
+                    <h3>7. Governing Law</h3>
+                    <p>These terms are governed by the laws of the State of Delaware...</p>
+                </div>
+            `;
+            
+            document.getElementById('planDetailsContent').innerHTML = content;
+            toggleModal('planDetailsModal');
+        }
+
+        function showPrivacy() {
+            const content = `
+                <h2>Privacy Policy</h2>
+                <div style="max-height: 400px; overflow-y: auto; padding: 1rem; background: #f5f5f5; border-radius: 8px;">
+                    <h3>1. Information We Collect</h3>
+                    <p>We collect personal information including name, email, phone number...</p>
+                    
+                    <h3>2. How We Use Information</h3>
+                    <p>We use your information to provide services, process transactions, and communicate...</p>
+                    
+                    <h3>3. Data Security</h3>
+                    <p>We implement industry-standard security measures to protect your data...</p>
+                    
+                    <h3>4. Third-Party Sharing</h3>
+                    <p>We do not sell your data. We may share with service providers as necessary...</p>
+                    
+                    <h3>5. Cookies</h3>
+                    <p>We use cookies to enhance user experience and analyze site traffic...</p>
+                    
+                    <h3>6. Your Rights</h3>
+                    <p>You have the right to access, correct, or delete your personal information...</p>
+                    
+                    <h3>7. Contact Us</h3>
+                    <p>For privacy concerns, contact: starlightinvestmentsmanagements@gmail.com</p>
+                </div>
+            `;
+            
+            document.getElementById('planDetailsContent').innerHTML = content;
+            toggleModal('planDetailsModal');
+        }
+
+        // Auto Profit Calculator (Simulation)
+        function simulateDailyProfits() {
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            let updated = false;
+            
+            users.forEach(user => {
+                if (user.investments) {
+                    user.investments.forEach(inv => {
+                        if (inv.status === 'active') {
+                            const dailyProfit = (inv.amount * inv.dailyProfit) / 100;
+                            user.balance = (user.balance || 0) + dailyProfit;
+                            updated = true;
+                            
+                            // Add profit transaction
+                            user.transactions = user.transactions || [];
+                            user.transactions.unshift({
+                                id: Date.now(),
+                                date: new Date().toISOString(),
+                                type: 'profit',
+                                amount: dailyProfit,
+                                description: `Daily profit from ${inv.planName}`,
+                                status: 'completed',
+                                reference: 'PROF' + Date.now().toString().slice(-8)
+                            });
+                        }
+                    });
+                }
+            });
+            
+            if (updated) {
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                // Update current user if logged in
+                if (currentUser) {
+                    const updatedUser = users.find(u => u.email === currentUser.email);
+                    if (updatedUser) {
+                        currentUser = updatedUser;
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                        updateUserDashboard();
+                    }
+                }
+            }
+        }
+
+        // Run profit simulation every 30 seconds for demo purposes
+        setInterval(simulateDailyProfits, 30000);
+
+        // Initialize with some demo users if none exist
+        function initializeDemoUsers() {
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            
+            if (users.length === 0) {
+                const demoUsers = [
+                    {
+                        id: 1,
+                        name: "John Smith",
+                        email: "john@example.com",
+                        phone: "+1234567890",
+                        password: "password123",
+                        balance: 5000,
+                        investments: [],
+                        transactions: [
+                            {
+                                id: 1001,
+                                date: new Date(Date.now() - 86400000).toISOString(),
+                                type: "deposit",
+                                amount: 5000,
+                                description: "Initial deposit",
+                                status: "completed",
+                                reference: "TX1001"
+                            }
+                        ],
+                        createdAt: new Date(Date.now() - 86400000).toISOString()
+                    },
+                    {
+                        id: 2,
+                        name: "Sarah Johnson",
+                        email: "sarah@example.com",
+                        phone: "+1987654321",
+                        password: "password123",
+                        balance: 15000,
+                        investments: [
+                            {
+                                id: 2001,
+                                planId: 2,
+                                planName: "Premium Plan",
+                                amount: 10000,
+                                startDate: new Date(Date.now() - 86400000).toISOString(),
+                                endDate: new Date(Date.now() + 59 * 86400000).toISOString(),
+                                dailyProfit: 2.0,
+                                totalReturn: 120,
+                                status: "active",
+                                profits: []
+                            }
+                        ],
+                        transactions: [
+                            {
+                                id: 2001,
+                                date: new Date(Date.now() - 172800000).toISOString(),
+                                type: "deposit",
+                                amount: 15000,
+                                description: "Bank transfer",
+                                status: "completed",
+                                reference: "TX2001"
+                            },
+                            {
+                                id: 2002,
+                                date: new Date(Date.now() - 86400000).toISOString(),
+                                type: "investment",
+                                amount: -10000,
+                                description: "Investment in Premium Plan",
+                                status: "completed",
+                                reference: "TX2002"
+                            }
+                        ],
+                        createdAt: new Date(Date.now() - 172800000).toISOString()
+                    }
+                ];
+                
+                localStorage.setItem('users', JSON.stringify(demoUsers));
+            }
+        }
+
+        // Call initialization
+        initializeDemoUsers();
+
+        // Add some CSS for additional elements
+        const additionalStyles = `
+            .btn-sm {
+                padding: 0.25rem 0.75rem;
+                font-size: 0.875rem;
+            }
+            
+            .empty-portfolio {
+                text-align: center;
+                padding: 3rem;
+                color: var(--gray);
+            }
+            
+            .portfolio-item {
+                background: white;
+                border-radius: var(--radius-md);
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+                box-shadow: var(--shadow-sm);
+            }
+            
+            .portfolio-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+            
+            .portfolio-actions {
+                display: flex;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+            
+            .toggle-switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 34px;
+            }
+            
+            .toggle-input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+            
+            .toggle-label {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                transition: .4s;
+                border-radius: 34px;
+            }
+            
+            .toggle-label:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                transition: .4s;
+                border-radius: 50%;
+            }
+            
+            .toggle-input:checked + .toggle-label {
+                background-color: var(--success);
+            }
+            
+            .toggle-input:checked + .toggle-label:before {
+                transform: translateX(26px);
+            }
+            
+            .crypto-addresses {
+                background: #f8f9fa;
+                padding: 1rem;
+                border-radius: 8px;
+                margin: 1rem 0;
+                font-family: monospace;
+            }
+            
+            .payment-instructions {
+                background: #f8f9fa;
+                padding: 1.5rem;
+                border-radius: 8px;
+                margin: 1rem 0;
+            }
+            
+            .deposit-instructions {
+                background: #f8f9fa;
+                padding: 1.5rem;
+                border-radius: 8px;
+                margin: 1rem 0;
+            }
+            
+            .plan-details {
+                background: #f8f9fa;
+                padding: 1.5rem;
+                border-radius: 8px;
+                margin: 1rem 0;
+            }
+            
+            .balance-display {
+                text-align: center;
+                padding: 2rem;
+                background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+                color: white;
+                border-radius: var(--radius-lg);
+                margin: 2rem 0;
+            }
+            
+            .balance-display h1 {
+                font-size: 3.5rem;
+                margin: 1rem 0;
+            }
+            
+            .profit-loss {
+                font-size: 1.2rem;
+                color: var(--accent);
+            }
+            
+            .quick-stats {
+                margin-top: 2rem;
+                padding-top: 2rem;
+                border-top: 1px solid var(--light);
+            }
+            
+            .quick-stats .stat {
+                margin-bottom: 1rem;
+            }
+            
+            .quick-stats h4 {
+                color: var(--primary);
+                font-size: 1.5rem;
+            }
+            
+            .admin-profile {
+                text-align: center;
+                padding: 1rem;
+                background: var(--gradient-primary);
+                color: white;
+                border-radius: var(--radius-md);
+                margin-bottom: 2rem;
+            }
+            
+            .user-profile {
+                text-align: center;
+                padding: 1rem;
+                background: var(--gradient-primary);
+                color: white;
+                border-radius: var(--radius-md);
+                margin-bottom: 2rem;
+            }
+            
+            .avatar {
+                width: 80px;
+                height: 80px;
+                background: rgba(255,255,255,0.2);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 1rem;
+            }
+            
+            .avatar i {
+                font-size: 3rem;
+            }
+            
+            .profile-header h3 {
+                margin: 0.5rem 0;
+            }
+            
+            .profile-header p {
+                opacity: 0.8;
+                font-size: 0.9rem;
+            }
+        `;
+        
+        // Add styles to document
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = additionalStyles;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>
